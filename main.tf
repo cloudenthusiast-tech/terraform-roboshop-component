@@ -96,6 +96,7 @@ resource "aws_launch_template" "main" {
         }
     )
   }
+
 #tags attached to the volume created by instance
   tag_specifications {
     resource_type= "volume"
@@ -107,17 +108,14 @@ resource "aws_launch_template" "main" {
         }
     )
 }
-#tags attached to launch_template
-  tag_specifications {
-    resource_type= "main"
 
-     tags =merge(
-        local.common_tags,
-        {
-            Name= "${local.common_name_suffix}-${var.component}"
-        }
-    )
-}
+ # tags attached to the launch template
+  tags = merge(
+      local.common_tags,
+      {
+        Name = "${local.common_name_suffix}-${var.component}"
+      }
+  )
 }
 
 resource "aws_autoscaling_group" "main" {

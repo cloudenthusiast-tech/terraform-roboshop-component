@@ -109,7 +109,7 @@ resource "aws_launch_template" "main" {
 }
 #tags attached to launch_template
   tag_specifications {
-    resource_type= "launch_template"
+    resource_type= "main"
 
      tags =merge(
         local.common_tags,

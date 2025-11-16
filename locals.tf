@@ -4,8 +4,8 @@ locals {
   vpc_id=data.aws_ssm_parameter.vpc_id.value
   private_subnet_id=split("," , data.aws_ssm_parameter.private_subnet_ids.value)[0]
   private_subnet_ids=split("," , data.aws_ssm_parameter.private_subnet_ids.value)
-  backend_alb_listener_arn=data.aws_ssm_parameter.backend_alb_listener_arn.vaue
-  frontend_alb_listener_arn=data.aws_ssm_parameter.frontend_alb_listener_arn.vaue
+  backend_alb_listener_arn=data.aws_ssm_parameter.backend_alb_listener_arn.value
+  frontend_alb_listener_arn=data.aws_ssm_parameter.frontend_alb_listener_arn.value
   listener_arn= "${var.component}" == "frontend" ? local.frontend_alb_listener_arn : local.backend_alb_listener_arn
   sg_id=data.aws_ssm_parameter.sg_id.value
   tg_port= "${var.component}" == "frontend" ? 80 : 8080
